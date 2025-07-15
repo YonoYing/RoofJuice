@@ -81,6 +81,8 @@ crashlytics-build.properties
 # VS Code
 # ===============
 .vscode/
+.vs/
+.vsconfig
 
 # ===============
 # Other
