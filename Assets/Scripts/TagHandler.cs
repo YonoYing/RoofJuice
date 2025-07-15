@@ -39,6 +39,7 @@ public class TagHandler : MonoBehaviour
 
             tagRenderer.material = chosenTag;
             tagged = true;
+            GameObject.Find("GameManager").GetComponent<LevelHandler>().CheckLevel();
         }
     }
 }

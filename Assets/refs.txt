@@ -1,3 +1,17 @@
  Perzval.px
  Kenney
- 
+
+ plan: 
+ 1. design map (done) 
+ 2. player movement  (done) 
+ 3. tagging  (done) 
+ 4. level switching loop
+ 5. start screen 
+ 6. enemies & lives 
+ 7. umbrella float 
+ 8. umbrella open 
+ 9. rain clouds 
+ 10. enemy bouncing 
+ 11. sounds & music 
+ 12. game feel 
+ 13. achievements 
