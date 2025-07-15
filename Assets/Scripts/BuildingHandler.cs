@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class GraffitiHandler : MonoBehaviour
+public class BuildingHandler : MonoBehaviour
 {
+    public GameObject[] buildings;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
