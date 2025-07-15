@@ -5,13 +5,16 @@
  1. design map (done) 
  2. player movement  (done) 
  3. tagging  (done) 
- 4. level switching loop
- 5. start screen 
+ 4. level switching loop (done)
  6. enemies & lives 
+    enemy1: falling balls => falling filing cabinates  
+    enemy2: snake -> policeman 
+    enemy3: switchBall -> rainCloud
  7. umbrella float 
  8. umbrella open 
  9. rain clouds 
  10. enemy bouncing 
  11. sounds & music 
- 12. game feel 
- 13. achievements 
+ 12. start screen 
+ 13. game feel 
+ 14. achievements 

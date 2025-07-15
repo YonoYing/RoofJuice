@@ -54,6 +54,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (Touchscreen.current == null) return;
+
+        if (Touchscreen.current.primaryTouch.press.isPressed)
+        {
+            // if (Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
+            // {
+            //     touchStart = Touchscreen.current.primaryTouch.position.ReadValue();
+            // }
+            if (Touchscreen.current.primaryTouch.press.wasReleasedThisFrame)
+            {
+                Debug.Log("swipe!");
+            }
+        }
+    }
+
     void Jump(Vector3 targetPosition)
     {
         if (!isJumping)
