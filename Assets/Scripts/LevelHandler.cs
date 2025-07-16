@@ -22,11 +22,13 @@ public class LevelHandler : MonoBehaviour
 
         // 3. Move the camera to the new map using CameraController
         Camera mainCam = Camera.main;
+            Debug.Log(mainCam.name);
         CameraController camController = mainCam.GetComponent<CameraController>();
         if (camController != null)
         {
             Vector3 camStart = mainCam.transform.position;
             Vector3 camMoveBy = newMapPos - currentMap.transform.position;
+            Debug.Log("move cam");
             camController.SmoothMoveCamera(camStart, camMoveBy, camController.moveDuration, () => {
                 // 4. Once camera stops, move player to new map's topBuilding
                 if (player != null)
@@ -47,6 +49,7 @@ public class LevelHandler : MonoBehaviour
                 Destroy(currentMap);
                 currentMap = newMap;
                 currentMap.GetComponent<MapFeel>().player = player;
+                GetComponent<EnemyManager>().map = currentMap;
             });
         }
         else
@@ -109,6 +112,11 @@ public class LevelHandler : MonoBehaviour
                 GameObject[] tempBuildings = buildingA.GetComponent<BuildingHandler>().buildings;
                 buildingA.GetComponent<BuildingHandler>().buildings = buildingB.GetComponent<BuildingHandler>().buildings;
                 buildingB.GetComponent<BuildingHandler>().buildings = tempBuildings;
+                // Check if we swapped the TopBuilding 
+                if(map.GetComponent<MapHandler>().topBuilding == buildingA)
+                    map.GetComponent<MapHandler>().topBuilding = buildingB;
+                else if(map.GetComponent<MapHandler>().topBuilding == buildingB)
+                    map.GetComponent<MapHandler>().topBuilding = buildingA;
             }
         }
     }
@@ -134,6 +142,7 @@ public class LevelHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(nextLevelDelay/2);
         currentMap.GetComponent<MapFeel>().MapCompleted();
+        GetComponent<EnemyManager>().ResetEnemies();
         yield return new WaitForSeconds(nextLevelDelay/2);
         NextLevel();
     }

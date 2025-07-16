@@ -2,24 +2,18 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : JumpController
 {
-    public GameObject map;
-    public GameObject currentBuilding;
-    public GameObject targetBuilding;
-    public float jumpSpeed = 5f;
-    public float jumpHeight = 1f;
-
     private PlayerInput playerInput;
     private InputAction moveAction;
-    private bool isJumping = false;
-    private Animator animator;
+    private bool pendingDeath = false;
+    private Vector3 offMapJumpTarget;
 
-    void Start()
+    new void Start()
     {
-        currentBuilding = map.GetComponent<MapHandler>().topBuilding;
+        if (currentBuilding == null && map != null)
+            currentBuilding = map.GetComponent<MapHandler>().topBuilding;
         transform.position = currentBuilding.transform.position;
-        
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions["Move"];
         animator = GetComponent<Animator>();
@@ -27,96 +21,47 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (!context.performed || isJumping) return;
         Vector2 moveInput = context.ReadValue<Vector2>();
+        int dir = -1;
+        if (moveInput.x > 0.5f) dir = 0; // right
+        else if (moveInput.x < -0.5f) dir = 3; // left
+        else if (moveInput.y > 0.5f) dir = 2; // up
+        else if (moveInput.y < -0.5f) dir = 1; // down
 
-        if(context.phase == InputActionPhase.Performed && !isJumping)
+        if (dir == -1) return;
+        var bh = currentBuilding.GetComponent<BuildingHandler>();
+        if (bh != null && bh.buildings != null && dir < bh.buildings.Length)
         {
-            if (moveInput.x > 0.5f) 
+            GameObject neighbor = bh.buildings[dir];
+            if (neighbor != null)
             {
-                targetBuilding = currentBuilding.GetComponent<BuildingHandler>().buildings[0];
-                Jump(targetBuilding.transform.position);
-            }
-            else if (moveInput.x < -0.5f) 
-            {
-                targetBuilding = currentBuilding.GetComponent<BuildingHandler>().buildings[3];
-                Jump(targetBuilding.transform.position);
-            }
-            else if (moveInput.y > 0.5f) 
-            {
-                targetBuilding = currentBuilding.GetComponent<BuildingHandler>().buildings[2];
-                Jump(targetBuilding.transform.position);
-            }
-            else if (moveInput.y < -0.5f) 
-            {
-                targetBuilding = currentBuilding.GetComponent<BuildingHandler>().buildings[1];
-                Jump(targetBuilding.transform.position);
+                targetBuilding = neighbor;
+                Jump(neighbor.transform.position);
+                return;
             }
         }
+        // No neighbor in that direction, jump off the map
+        Vector3 jumpDir = Vector3.zero;
+        if (dir == 0) jumpDir = Vector3.right;
+        else if (dir == 1) jumpDir = Vector3.back;
+        else if (dir == 2) jumpDir = Vector3.forward;
+        else if (dir == 3) jumpDir = Vector3.left;
+        offMapJumpTarget = currentBuilding.transform.position + jumpDir + Vector3.up;
+        pendingDeath = true;
+        Jump(offMapJumpTarget);
     }
 
-    void Update()
+    public override IEnumerator JumpCoroutine(Vector3 targetPosition)
     {
-        if (Touchscreen.current == null) return;
-
-        if (Touchscreen.current.primaryTouch.press.isPressed)
+        var baseEnum = base.JumpCoroutine(targetPosition);
+        while (baseEnum.MoveNext())
+            yield return baseEnum.Current;
+        if (pendingDeath && (targetPosition == offMapJumpTarget))
         {
-            // if (Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
-            // {
-            //     touchStart = Touchscreen.current.primaryTouch.position.ReadValue();
-            // }
-            if (Touchscreen.current.primaryTouch.press.wasReleasedThisFrame)
-            {
-                Debug.Log("swipe!");
-            }
+            pendingDeath = false;
+            GameObject.Find("GameManager").GetComponent<DeathManager>().OnPlayerDeath();
         }
-    }
-
-    void Jump(Vector3 targetPosition)
-    {
-        if (!isJumping)
-        {
-            // Rotate to face the direction of movement (ignore y)
-            Vector3 direction = targetPosition - transform.position;
-            direction.y = 0f;
-            if (direction.sqrMagnitude > 0.001f)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = targetRotation;
-            }
-            StartCoroutine(JumpCoroutine(targetPosition));
-        }
-    }
-
-    IEnumerator JumpCoroutine(Vector3 targetPosition)
-    {
-        isJumping = true;
-        animator.SetBool("jumping", true);
-        
-        Vector3 startPosition = transform.position;
-        float journeyLength = Vector3.Distance(startPosition, targetPosition);
-        float startTime = Time.time;
-        
-        while (true)
-        {
-            float distCovered = (Time.time - startTime) * jumpSpeed;
-            float fractionOfJourney = distCovered / journeyLength;
-            
-            if (fractionOfJourney >= 1f)
-                break;
-            
-            Vector3 currentPos = Vector3.Lerp(startPosition, targetPosition, fractionOfJourney);
-            float height = Mathf.Sin(fractionOfJourney * Mathf.PI) * jumpHeight;
-            currentPos.y += height;
-            
-            transform.position = currentPos;
-            yield return null;
-        }
-        
-        transform.position = targetPosition;
-        currentBuilding = targetBuilding;
-        isJumping = false;
-        animator.SetBool("jumping", false);
-        map.GetComponent<MapFeel>().PlayerLanding();
     }
 
     void OnDestroy()

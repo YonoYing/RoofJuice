@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PoliceAnimatorOverride
+  m_Controller: {fileID: 9100000, guid: 27052ba62cd9e1a428547aa45bb63bfd, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: -5252816984213320552, guid: 2acafbee57022294baa2cd034d860bca, type: 3}
+    m_OverrideClip: {fileID: -5252816984213320552, guid: 773ed39e6cb8d4b46aee19dfdd417dee, type: 3}
+  - m_OriginalClip: {fileID: -2993534804863918692, guid: 2acafbee57022294baa2cd034d860bca, type: 3}
+    m_OverrideClip: {fileID: -2993534804863918692, guid: 773ed39e6cb8d4b46aee19dfdd417dee, type: 3}
+  - m_OriginalClip: {fileID: -5455075036266976943, guid: 2acafbee57022294baa2cd034d860bca, type: 3}
+    m_OverrideClip: {fileID: -5455075036266976943, guid: 773ed39e6cb8d4b46aee19dfdd417dee, type: 3}
