@@ -11,7 +11,8 @@ public class JumpController : MonoBehaviour
     [SerializeField] public float jumpHeight = 1f;
 
     public bool isJumping = false;
-    [SerializeField] public Animator animator;
+    public bool bounce = false;
+    public Animator animator;
 
     public void Start()
     {

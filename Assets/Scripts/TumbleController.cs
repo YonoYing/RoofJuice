@@ -26,8 +26,8 @@ public class TumbleController : JumpController
     public override IEnumerator JumpCoroutine(Vector3 targetPosition)
     {
         isJumping = true;
-        if (animator)
-            animator.SetBool("jumping", true);
+        // if (animator)
+        //     animator.SetBool("jumping", true);
 
         Vector3 startPosition = transform.position;
         float journeyLength = Vector3.Distance(startPosition, targetPosition);
@@ -52,9 +52,10 @@ public class TumbleController : JumpController
         transform.position = targetPosition;
         currentBuilding = targetBuilding;
         isJumping = false;
-        if (animator)
-            animator.SetBool("jumping", false);
-        yield return StartCoroutine(Bounce());
+        // if (animator)
+        //     animator.SetBool("jumping", false);
+        if(bounce)
+            yield return StartCoroutine(Bounce());
     }
 
     private IEnumerator Bounce()

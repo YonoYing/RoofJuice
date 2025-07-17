@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     protected PlayerController playerController;
     public bool pendingDestroy = false;
     protected Vector3 offMapJumpTarget;
+    public int moveBias = 0;
 
 
     protected virtual void Start()
@@ -55,7 +56,13 @@ public class EnemyController : MonoBehaviour
         GameObject chosen = null;
         if (b0 != null && b1 != null)
         {
-            chosen = (Random.value < 0.5f) ? b0 : b1;
+            if(moveBias > 0)
+            {
+                chosen = moveBias == 1 ? b0 : b1;
+                moveBias = 0;
+            }
+            else
+                chosen = (Random.value < 0.5f) ? b0 : b1;
         }
         else if (b0 != null)
         {
@@ -69,9 +76,10 @@ public class EnemyController : MonoBehaviour
         {
             // Both are null, jump off the map in the right direction (use Vector3.right)
             offMapJumpTarget = (Random.value < 0.5f) ? 
-                                enemyCurrentBuilding.transform.position + Vector3.forward + Vector3.down : 
+                                enemyCurrentBuilding.transform.position + Vector3.back + Vector3.down : 
                                 enemyCurrentBuilding.transform.position + Vector3.left + Vector3.down;
             pendingDestroy = true;
+            GetComponent<JumpController>().bounce = false;
             jumpController.Jump(offMapJumpTarget);
             jumpController.targetBuilding = null;
             StartCoroutine(CheckDestroyAfterJump());
@@ -90,6 +98,17 @@ public class EnemyController : MonoBehaviour
         if (pendingDestroy)
         {
             pendingDestroy = false;
+            // Move object downward for 3 seconds at the same speed as the end of the jump
+            float duration = 3f;
+            float elapsed = 0f;
+            float speed = jumpController.jumpSpeed*2; // Use jumpSpeed as the downward speed
+            while (elapsed < duration)
+            {
+                float moveAmount = speed * Time.deltaTime;
+                transform.position += Vector3.down * moveAmount;
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
             Destroy(gameObject);
         }
     }

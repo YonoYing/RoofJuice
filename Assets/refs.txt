@@ -1,5 +1,6 @@
  Perzval.px
  Kenney
+ https://nyknck.itch.io/wind
 
  plan: 
  1. design map (done) 
@@ -11,6 +12,14 @@
     enemy2: snake -> policeman 
     enemy3: switchBall -> rainCloud
  7. umbrella float 
+   - Spawn wind at periodic interval 
+      - Pick rand building 0-2 up from bot right/left 
+      - for left offset z by one, for right x by -1 
+      - add wind to associated building's linked list
+   - Update player OnMove to detect Wind && openUmbrella and react 
+      - Add wind tag 
+      - If moving to a Wind then flag ontoWind
+      - Add check to jump coroutine override to check ontoWind and trigger manual jump if true
  8. umbrella open 
  9. rain clouds 
  10. enemy bouncing 
