@@ -45,7 +45,7 @@ Animator:
   m_GameObject: {fileID: 3471157680329561347}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 366ca25619e194e4dbca9fedcfc600cc, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -75,6 +75,7 @@ MonoBehaviour:
   jumpSpeed: 2
   jumpHeight: 0.7
   isJumping: 0
+  bounce: 0
   animator: {fileID: 0}
   mesh: {fileID: 0}
   bounceDistance: 0.2

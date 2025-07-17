@@ -6,16 +6,19 @@ public class EnemyManager : MonoBehaviour
 {
     public List<GameObject> enemies = new List<GameObject>();
     public GameObject policemanPrefab;
+    public GameObject raincloudPrefab;
     public GameObject windPrefab;
     public GameObject[] furniturePrefabs;
     public float policemanSpawnPeriod = 5f;
     public float furnitureSpawnPeriod = 3f;
+    public float raincloudSpawnPeriod = 3f;
     public float windSpawnPeriod = 3f;
     public GameObject map;
 
     private float spawnTimer = 0f;
     private float furnitureTimer = 0f;
     private float windTimer = 0f;
+    public float raincloudTimer = 0f;
     private GameObject currentPoliceman = null;
     private GameObject currentWind = null;
 
@@ -51,6 +54,13 @@ public class EnemyManager : MonoBehaviour
         {
             furnitureTimer = 0f;
             SpawnFurniture();
+        }
+
+        raincloudTimer += Time.deltaTime;
+        if (raincloudTimer >= raincloudSpawnPeriod)
+        {
+            raincloudTimer = 0f;
+            SpawnRaincloud();
         }
     }
 
@@ -103,7 +113,7 @@ public class EnemyManager : MonoBehaviour
         //Spawn new wind and set links accordingly 
         Vector3 spawnPosition = targetBuilding.transform.position;
         spawnPosition += cornerDirection == 2 ? new Vector3(0,0,1) : new Vector3(1,0,0);
-        GameObject newWind = Instantiate(windPrefab, spawnPosition, Quaternion.identity);
+        GameObject newWind = Instantiate(windPrefab, spawnPosition, Quaternion.Euler(0, 50, -90));
         enemies.Add(newWind);
         // Add links to building and new wind
         if(cornerDirection == 2)
@@ -111,6 +121,32 @@ public class EnemyManager : MonoBehaviour
         else 
             targetBuilding.GetComponent<BuildingHandler>().buildings[2] = newWind;
         newWind.GetComponent<BuildingHandler>().buildings[0] = map.GetComponent<MapHandler>().topBuilding;
+    }
+
+    public void SpawnRaincloud()
+    {
+        var mapHandler = map.GetComponent<MapHandler>();
+        var buildings = mapHandler.buildings;
+        // Exclude top, bottomLeft, bottomRight
+        List<GameObject> candidates = new List<GameObject>();
+        foreach (var b in buildings)
+        {
+            if (b != mapHandler.topBuilding && b != mapHandler.bottomLeft && b != mapHandler.bottomRight)
+                candidates.Add(b);
+        }
+        if (candidates.Count == 0) return;
+        GameObject targetBuilding = candidates[Random.Range(0, candidates.Count)];
+        // Pick offset and spawn position
+        Vector3[] offsets = { new Vector3(10,0,-10), new Vector3(-10,0,10) };
+        int offsetIndex = Random.Range(0, 2);
+        Vector3 spawnOffset = offsets[offsetIndex];
+        Vector3 moveOffset = offsets[1 - offsetIndex];
+        Vector3 spawnPosition = targetBuilding.transform.position + spawnOffset;
+        GameObject raincloud = Instantiate(raincloudPrefab, spawnPosition, Quaternion.identity);
+        Raincloud rc = raincloud.GetComponent<Raincloud>();
+        rc.targetBuilding = targetBuilding;
+        StartCoroutine(rc.MoveCloud(moveOffset));
+        enemies.Add(raincloud);
     }
 
     public void ResetEnemies()

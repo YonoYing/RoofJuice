@@ -1,6 +1,7 @@
  Perzval.px
  Kenney
  https://nyknck.itch.io/wind
+ https://cults3d.com/en/3d-model/various/low-poly-cloud
 
  plan: 
  1. design map (done) 
@@ -22,8 +23,17 @@
       - Add check to jump coroutine override to check ontoWind and trigger manual jump if true
  8. umbrella open 
  9. rain clouds 
+   - Spawn on a timer (EnemyManager)
+      - Pick a random square in map, exculding top, botRight/botLeft
+      - spawn at +- (10, 0, -10) from square, start coroutine to lerp to position
+   - positionCoroutine should start coroutine to play rain and trigger greying animation 
+   - rainCoroutine should trigger coroutine for checking for umbrella, if fails then untag square
+   - rain Coroutine also re-triggers posiiton coroutine to move offscreen in same direction, then delete (flag) 
  10. enemy bouncing 
  11. sounds & music 
  12. start screen 
  13. game feel 
  14. achievements 
+
+ -1 -4 
+ -3 -2

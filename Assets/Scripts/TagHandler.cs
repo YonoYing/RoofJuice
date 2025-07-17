@@ -4,6 +4,7 @@ using System.Linq;
 public class TagHandler : MonoBehaviour
 {
     public Material[] tags;
+    public Material emptyTag;
     public bool tagged;
 
     void OnTriggerEnter(Collider other)
@@ -11,9 +12,6 @@ public class TagHandler : MonoBehaviour
         if(!tagged)
         {
             BuildingHandler buildingHandler = GetComponent<BuildingHandler>();
-            if (buildingHandler == null || buildingHandler.buildings == null || buildingHandler.buildings.Length == 0)
-                return;
-
             var usedMaterials = buildingHandler.buildings
                 .Select(b => b != null ? b.transform.Find("Tag") : null)
                 .Where(tagChild => tagChild != null)
@@ -25,21 +23,26 @@ public class TagHandler : MonoBehaviour
                 .ToList();
 
             var availableTags = tags.Where(tag => !usedMaterials.Contains(tag)).ToList();
-            if (availableTags.Count == 0)
-                return; 
 
             Material chosenTag = availableTags[Random.Range(0, availableTags.Count)];
 
             Transform tagChildTransform = transform.Find("Tag");
-            if (tagChildTransform == null)
-                return;
             Renderer tagRenderer = tagChildTransform.GetComponent<Renderer>();
-            if (tagRenderer == null)
-                return;
 
             tagRenderer.material = chosenTag;
             tagged = true;
             GameObject.Find("GameManager").GetComponent<LevelHandler>().CheckLevel();
+        }
+    }
+
+    public void ClearTag()
+    {
+        if(tagged)
+        {
+            Transform tagChildTransform = transform.Find("Tag");
+            Renderer tagRenderer = tagChildTransform.GetComponent<Renderer>();
+            tagRenderer.material = emptyTag;
+            tagged = false;
         }
     }
 }
