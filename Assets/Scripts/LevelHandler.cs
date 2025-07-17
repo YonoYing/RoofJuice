@@ -22,7 +22,6 @@ public class LevelHandler : MonoBehaviour
 
         // 3. Move the camera to the new map using CameraController
         Camera mainCam = Camera.main;
-            Debug.Log(mainCam.name);
         CameraController camController = mainCam.GetComponent<CameraController>();
         if (camController != null)
         {
@@ -79,7 +78,7 @@ public class LevelHandler : MonoBehaviour
         // Get all building GameObjects
         GameObject[] buildingObjs = map.GetComponent<MapHandler>().buildings;
         // Randomly swap some buildings
-        for (int i = 0; i < buildingObjs.Length; i++)
+        for (int i = 0; i < 16; i++)
         {
             int j = Random.Range(0, buildingObjs.Length);
             if (i != j)
@@ -89,6 +88,8 @@ public class LevelHandler : MonoBehaviour
                 // Swap positions in the array
                 buildingObjs[i] = buildingB;
                 buildingObjs[j] = buildingA;
+                Debug.Log(buildingA);
+                Debug.Log(buildingB);
                 // Swap their transforms in the hierarchy
                 Vector3 tempPos = buildingA.transform.position;
                 buildingA.transform.position = buildingB.transform.position;
@@ -99,13 +100,14 @@ public class LevelHandler : MonoBehaviour
                     BuildingHandler bh = buildingObjs[k].GetComponent<BuildingHandler>();
                     if (bh != null && bh.buildings != null)
                     {
+                        int aIndex = -1, bIndex = -1;
                         for (int m = 0; m < bh.buildings.Length; m++)
                         {
-                            if (bh.buildings[m] == buildingA)
-                                bh.buildings[m] = buildingB;
-                            else if (bh.buildings[m] == buildingB)
-                                bh.buildings[m] = buildingA;
+                            if (bh.buildings[m] == buildingA) aIndex = m;
+                            else if (bh.buildings[m] == buildingB) bIndex = m;
                         }
+                        if (aIndex != -1) bh.buildings[aIndex] = buildingB;
+                        if (bIndex != -1) bh.buildings[bIndex] = buildingA;
                     }
                 }
                 // Swap their transforms in the hierarchy
