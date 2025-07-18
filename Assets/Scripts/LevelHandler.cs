@@ -140,6 +140,16 @@ public class LevelHandler : MonoBehaviour
                     map.GetComponent<MapHandler>().topBuilding = buildingB;
                 else if(map.GetComponent<MapHandler>().topBuilding == buildingB)
                     map.GetComponent<MapHandler>().topBuilding = buildingA;
+                // Check if we swapped the bottomLeft 
+                if(map.GetComponent<MapHandler>().bottomLeft == buildingA)
+                    map.GetComponent<MapHandler>().bottomLeft = buildingB;
+                else if(map.GetComponent<MapHandler>().bottomLeft == buildingB)
+                    map.GetComponent<MapHandler>().bottomLeft = buildingA;
+                // Check if we swapped the bottomRight 
+                if(map.GetComponent<MapHandler>().bottomRight == buildingA)
+                    map.GetComponent<MapHandler>().bottomRight = buildingB;
+                else if(map.GetComponent<MapHandler>().bottomRight == buildingB)
+                    map.GetComponent<MapHandler>().bottomRight = buildingA;
             }
         }
     }
