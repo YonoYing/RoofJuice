@@ -49,6 +49,7 @@ public class LevelHandler : MonoBehaviour
                 currentMap = newMap;
                 currentMap.GetComponent<MapFeel>().player = player;
                 GetComponent<EnemyManager>().map = currentMap;
+                GetComponent<DeathManager>().map = currentMap;
             });
         }
         else
