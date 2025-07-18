@@ -8,6 +8,7 @@ public class Raincloud : MonoBehaviour
     public float rainDelay = 1f;
     public float rainDuration = 1f;
     public float umbrellaCheckDelay = 1f;
+    public bool pendingDestroy;
     public Animator animator;
     public ParticleSystem rainParticleSystem;
     public Vector3 nextMoveVector;
@@ -32,7 +33,10 @@ public class Raincloud : MonoBehaviour
             yield return null;
         }
         transform.position = end;
-        StartCoroutine(RainCoroutine(moveBy));
+        if (pendingDestroy)
+            Destroy(gameObject);
+        else
+            StartCoroutine(RainCoroutine(moveBy));
     }
 
     public IEnumerator RainCoroutine(Vector3 nextMove)
@@ -47,6 +51,7 @@ public class Raincloud : MonoBehaviour
         // 4. Wait for rain to finish (or a set time), then move again
         yield return new WaitForSeconds(rainDuration);
         if (animator) animator.SetBool("Raining", false);
+        pendingDestroy = true;
         yield return StartCoroutine(MoveCloud(nextMove));
     }
 

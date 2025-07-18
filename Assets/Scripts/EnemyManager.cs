@@ -146,7 +146,6 @@ public class EnemyManager : MonoBehaviour
         Raincloud rc = raincloud.GetComponent<Raincloud>();
         rc.targetBuilding = targetBuilding;
         StartCoroutine(rc.MoveCloud(moveOffset));
-        enemies.Add(raincloud);
     }
 
     public void ResetEnemies()

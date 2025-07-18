@@ -58,7 +58,12 @@ public class TumbleController : JumpController
             yield return StartCoroutine(Bounce());
     }
 
-    private IEnumerator Bounce()
+    public void ManualBounce()
+    {
+        StartCoroutine(Bounce());
+    }
+
+    public IEnumerator Bounce()
     {
         Vector3 originalPos = transform.position;
         Vector3 upPos = originalPos + Vector3.up * bounceDistance;

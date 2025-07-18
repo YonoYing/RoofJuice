@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5113970623176757917}
   - component: {fileID: 7802233625177378915}
   - component: {fileID: 6249532482058049389}
+  - component: {fileID: 7439837581385842119}
   m_Layer: 0
   m_Name: Microwave
   m_TagString: Untagged
@@ -45,10 +46,10 @@ Animator:
   m_GameObject: {fileID: 3471157680329561347}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 27e93a5ae6b8d8949893f295dc837eb8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -98,6 +99,28 @@ MonoBehaviour:
   movementTimer: 0
   pendingDestroy: 0
   moveBias: 0
+  pauseOnSpawn: 0.7
+--- !u!65 &7439837581385842119
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3471157680329561347}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3572042, y: 0.26766023, z: 0.32412773}
+  m_Center: {x: 0.025679082, y: 0.19763704, z: 0.046944767}
 --- !u!1001 &3841718216858737269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -162,6 +185,7 @@ PrefabInstance:
     - {fileID: 7311821771889929536, guid: e5f9c420baad1fa40a646b8aa18ff0be, type: 3}
     - {fileID: 1536708370093963243, guid: e5f9c420baad1fa40a646b8aa18ff0be, type: 3}
     - {fileID: -7441904797947745525, guid: e5f9c420baad1fa40a646b8aa18ff0be, type: 3}
+    - {fileID: 1832826193060179, guid: e5f9c420baad1fa40a646b8aa18ff0be, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -78,7 +78,7 @@ public class LevelHandler : MonoBehaviour
         // Get all building GameObjects
         GameObject[] buildingObjs = map.GetComponent<MapHandler>().buildings;
         // Randomly swap some buildings
-        for (int i = 0; i < 16; i++)
+        for (int i = 0; i < 10; i++)
         {
             int j = Random.Range(0, buildingObjs.Length);
             if (i != j)
@@ -94,23 +94,44 @@ public class LevelHandler : MonoBehaviour
                 Vector3 tempPos = buildingA.transform.position;
                 buildingA.transform.position = buildingB.transform.position;
                 buildingB.transform.position = tempPos;
-                // Update all references in all buildings' BuildingHandler.buildings arrays
-                for (int k = 0; k < buildingObjs.Length; k++)
+
+                // 1. Create a new list with all unique buildings from both buildingA and buildingB
+                System.Collections.Generic.List<GameObject> allBuildings = new System.Collections.Generic.List<GameObject>();
+                
+                // Add buildings from buildingA's list
+                foreach (GameObject b in buildingA.GetComponent<BuildingHandler>().buildings)
                 {
-                    BuildingHandler bh = buildingObjs[k].GetComponent<BuildingHandler>();
-                    if (bh != null && bh.buildings != null)
+                    if (b != null && !allBuildings.Contains(b))
+                        allBuildings.Add(b);
+                }
+                
+                // Add buildings from buildingB's list
+                foreach (GameObject b in buildingB.GetComponent<BuildingHandler>().buildings)
+                {
+                    if (b != null && !allBuildings.Contains(b))
+                        allBuildings.Add(b);
+                }
+                
+                // 2. Loop through the new list and swap buildingA/buildingB references
+                foreach (GameObject b in allBuildings)
+                {
+                    if (b != null)
                     {
-                        int aIndex = -1, bIndex = -1;
-                        for (int m = 0; m < bh.buildings.Length; m++)
+                        BuildingHandler bh = b.GetComponent<BuildingHandler>();
+                        if (bh != null && bh.buildings != null)
                         {
-                            if (bh.buildings[m] == buildingA) aIndex = m;
-                            else if (bh.buildings[m] == buildingB) bIndex = m;
+                            for (int m = 0; m < bh.buildings.Length; m++)
+                            {
+                                if (bh.buildings[m] == buildingA)
+                                    bh.buildings[m] = buildingB;
+                                else if (bh.buildings[m] == buildingB)
+                                    bh.buildings[m] = buildingA;
+                            }
                         }
-                        if (aIndex != -1) bh.buildings[aIndex] = buildingB;
-                        if (bIndex != -1) bh.buildings[bIndex] = buildingA;
                     }
                 }
-                // Swap their transforms in the hierarchy
+                
+                // Swap their building lists
                 GameObject[] tempBuildings = buildingA.GetComponent<BuildingHandler>().buildings;
                 buildingA.GetComponent<BuildingHandler>().buildings = buildingB.GetComponent<BuildingHandler>().buildings;
                 buildingB.GetComponent<BuildingHandler>().buildings = tempBuildings;

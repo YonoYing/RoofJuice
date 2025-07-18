@@ -86,10 +86,10 @@ public class PlayerController : JumpController
     void DeathJump(int dir) 
     {
         Vector3 jumpDir = Vector3.zero;
-        if (dir == 0) jumpDir = Vector3.right;
-        else if (dir == 1) jumpDir = Vector3.back;
-        else if (dir == 2) jumpDir = Vector3.forward;
-        else if (dir == 3) jumpDir = Vector3.left;
+        if (dir == 0) jumpDir = Vector3.back;
+        else if (dir == 1) jumpDir = Vector3.left;
+        else if (dir == 2) jumpDir = Vector3.right;
+        else if (dir == 3) jumpDir = Vector3.forward;
         offMapJumpTarget = currentBuilding.transform.position + jumpDir + Vector3.up;
         pendingDeath = true;
         Jump(offMapJumpTarget);
@@ -103,6 +103,17 @@ public class PlayerController : JumpController
         if (pendingDeath && (targetPosition == offMapJumpTarget))
         {
             pendingDeath = false;
+            // Move object downward for 3 seconds at the same speed as the end of the jump
+            float duration = 1f;
+            float elapsed = 0f;
+            float speed = jumpSpeed*2; // Use jumpSpeed as the downward speed
+            while (elapsed < duration)
+            {
+                float moveAmount = speed * Time.deltaTime;
+                transform.position += Vector3.down * moveAmount;
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
             gm.GetComponent<DeathManager>().OnPlayerDeath();
         }
         else if (pendingWind)
