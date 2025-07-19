@@ -173,7 +173,6 @@ public class EnemyManager : MonoBehaviour
 
     public void UpdateRainclouds(int stage)
     {
-        Debug.Log("ASdasd");
         if(stage <= 1)
         {
             raincloudsEnabled = true;
