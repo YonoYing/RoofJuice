@@ -137,9 +137,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5496913982161104703, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
       propertyPath: m_Name
       value: L
@@ -264,9 +272,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 2671998785952689620, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 2671998785952689620, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 2671998785952689620, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5778732480703082074, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
       propertyPath: m_Name
       value: 2
@@ -334,9 +350,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7078769807741605350, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.11287
@@ -422,8 +446,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: bb8e59ddbcd025042925aa05be09d132, type: 2}
   - {fileID: 2100000, guid: 1acf07fb2ed31934aaf063c7e82b451a, type: 2}
   emptyTag: {fileID: 0}
+  puddleTag: {fileID: 0}
   tagged: 0
+  puddled: 0
   smokePrefab: {fileID: 0}
+  puddleClearDelay: 0
 --- !u!4 &8247489870476550637 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7078769807741605350, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
@@ -462,9 +489,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7078769807741605350, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -542,8 +577,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: bb8e59ddbcd025042925aa05be09d132, type: 2}
   - {fileID: 2100000, guid: 1acf07fb2ed31934aaf063c7e82b451a, type: 2}
   emptyTag: {fileID: 0}
+  puddleTag: {fileID: 0}
   tagged: 0
+  puddled: 0
   smokePrefab: {fileID: 0}
+  puddleClearDelay: 0
 --- !u!4 &8791816092524787491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7078769807741605350, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
@@ -566,9 +604,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8311723433183220911, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -653,9 +699,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5496913982161104703, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
       propertyPath: m_Name
       value: 8
@@ -756,9 +810,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7078769807741605350, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.11287
@@ -844,8 +906,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: bb8e59ddbcd025042925aa05be09d132, type: 2}
   - {fileID: 2100000, guid: 1acf07fb2ed31934aaf063c7e82b451a, type: 2}
   emptyTag: {fileID: 0}
+  puddleTag: {fileID: 0}
   tagged: 0
+  puddled: 0
   smokePrefab: {fileID: 0}
+  puddleClearDelay: 0
 --- !u!4 &5511667503183457155 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7078769807741605350, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
@@ -884,9 +949,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7078769807741605350, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.11287
@@ -972,8 +1045,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: bb8e59ddbcd025042925aa05be09d132, type: 2}
   - {fileID: 2100000, guid: 1acf07fb2ed31934aaf063c7e82b451a, type: 2}
   emptyTag: {fileID: 0}
+  puddleTag: {fileID: 0}
   tagged: 0
+  puddled: 0
   smokePrefab: {fileID: 0}
+  puddleClearDelay: 0
 --- !u!4 &6782243554312445845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7078769807741605350, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
@@ -992,9 +1068,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5496913982161104703, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
       propertyPath: m_Name
       value: Q
@@ -1099,9 +1183,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7078769807741605350, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.11287
@@ -1178,9 +1270,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5496913982161104703, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
       propertyPath: m_Name
       value: F
@@ -1313,9 +1413,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 2671998785952689620, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 2671998785952689620, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 2671998785952689620, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5778732480703082074, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
       propertyPath: m_Name
       value: C
@@ -1368,9 +1476,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8311723433183220911, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -1455,9 +1571,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6504181700962128192, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
@@ -1602,9 +1726,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 2671998785952689620, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 2671998785952689620, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 2671998785952689620, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5778732480703082074, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
       propertyPath: m_Name
       value: 5
@@ -1669,9 +1801,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7078769807741605350, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -1740,9 +1880,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5496913982161104703, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
       propertyPath: m_Name
       value: I
@@ -1855,9 +2003,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7078769807741605350, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.11287
@@ -1948,8 +2104,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: bb8e59ddbcd025042925aa05be09d132, type: 2}
   - {fileID: 2100000, guid: 1acf07fb2ed31934aaf063c7e82b451a, type: 2}
   emptyTag: {fileID: 0}
+  puddleTag: {fileID: 0}
   tagged: 0
+  puddled: 0
   smokePrefab: {fileID: 0}
+  puddleClearDelay: 0
 --- !u!1001 &5955712418164083359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1967,9 +2126,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8311723433183220911, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.11287
@@ -2058,9 +2225,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8311723433183220911, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
@@ -2153,9 +2328,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7078769807741605350, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2272,9 +2455,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5496913982161104703, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
       propertyPath: m_Name
       value: 10
@@ -2407,9 +2598,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 2671998785952689620, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 2671998785952689620, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 2671998785952689620, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5778732480703082074, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
       propertyPath: m_Name
       value: P
@@ -2458,9 +2657,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7078769807741605350, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.11287
@@ -2551,8 +2758,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: bb8e59ddbcd025042925aa05be09d132, type: 2}
   - {fileID: 2100000, guid: 1acf07fb2ed31934aaf063c7e82b451a, type: 2}
   emptyTag: {fileID: 0}
+  puddleTag: {fileID: 0}
   tagged: 0
+  puddled: 0
   smokePrefab: {fileID: 0}
+  puddleClearDelay: 0
 --- !u!1001 &8098722295582403594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2566,9 +2776,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4803312824147413508, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5496913982161104703, guid: 9f82e219e51f28c429f1a778e2390c10, type: 3}
       propertyPath: m_Name
       value: B
@@ -2705,9 +2923,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 2671998785952689620, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 2671998785952689620, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 2671998785952689620, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5778732480703082074, guid: b0079d630c75aed409c47000dcc4710c, type: 3}
       propertyPath: m_Name
       value: J
@@ -2760,9 +2986,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 1364620784144587485, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8311723433183220911, guid: f61ddb572fa906c44854ec35feda2bad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2859,9 +3093,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eef78e6de09545748928bef1eaab1bff, type: 2}
     - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleTag
+      value: 
+      objectReference: {fileID: 2100000, guid: 961d27a6ab3d6af48bdffbfedff77efe, type: 2}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: smokePrefab
       value: 
       objectReference: {fileID: 5930255495277211516, guid: c2db84ed1a91a20418f4192b3419708d, type: 3}
+    - target: {fileID: 4186455125755295606, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
+      propertyPath: puddleClearDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7078769807741605350, guid: 126303a38d8ac3b4da763c11800b4778, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

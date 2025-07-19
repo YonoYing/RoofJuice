@@ -8,10 +8,12 @@ public class PlayerController : JumpController
     private InputAction moveAction;
     private bool pendingDeath = false;
     private Vector3 offMapJumpTarget;
+    public bool edgeBlocking;
     
     public GameObject umbrella;
     public bool umbrellaOpen, pendingWind, executingWind;
-    public float umbrellaAutoCloseTime = 1f; // Time in seconds before umbrella auto-closes
+    public float umbrellaAutoCloseTime = 1f; 
+    public float deathTimer = 2f;
     GameObject gm;
 
     new void Start()
@@ -32,6 +34,10 @@ public class PlayerController : JumpController
             umbrellaOpen = true;
             umbrella.GetComponent<Animator>().SetBool("Open", true);
             StartCoroutine(UmbrellaTimerCoroutine());
+        }
+        if(GameObject.Find("SpaceIndicator"))
+        {
+            GameObject.Find("SpaceIndicator").GetComponent<Animator>().SetTrigger("Disable");
         }
     }
 
@@ -85,14 +91,17 @@ public class PlayerController : JumpController
 
     void DeathJump(int dir) 
     {
-        Vector3 jumpDir = Vector3.zero;
-        if (dir == 0) jumpDir = Vector3.back;
-        else if (dir == 1) jumpDir = Vector3.left;
-        else if (dir == 2) jumpDir = Vector3.right;
-        else if (dir == 3) jumpDir = Vector3.forward;
-        offMapJumpTarget = currentBuilding.transform.position + jumpDir + Vector3.up;
-        pendingDeath = true;
-        Jump(offMapJumpTarget);
+        if(!edgeBlocking)
+        {
+            Vector3 jumpDir = Vector3.zero;
+            if (dir == 0) jumpDir = Vector3.back;
+            else if (dir == 1) jumpDir = Vector3.left;
+            else if (dir == 2) jumpDir = Vector3.right;
+            else if (dir == 3) jumpDir = Vector3.forward;
+            offMapJumpTarget = currentBuilding.transform.position + jumpDir + Vector3.up;
+            pendingDeath = true;
+            Jump(offMapJumpTarget);
+        }
     }
 
     public override IEnumerator JumpCoroutine(Vector3 targetPosition)
@@ -139,6 +148,12 @@ public class PlayerController : JumpController
     public void OnDeath()
     {
         CloseUmbrella();
+        GetComponent<Animator>().SetTrigger("Destroy");
+    }
+
+    public void DeathReset()
+    {
+        GameObject.Find("GameManager").GetComponent<DeathManager>().StartPlayerDeathCoroutine();
     }
 
     void OnDestroy()

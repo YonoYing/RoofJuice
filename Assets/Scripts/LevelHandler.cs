@@ -1,5 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LevelHandler : MonoBehaviour
 {
@@ -7,14 +10,20 @@ public class LevelHandler : MonoBehaviour
     public GameObject currentMap;
     public GameObject player;
     public float nextLevelDelay = 2f;
+    public bool tutorial;
+    public int stage = 0;
+    public TMP_Text stageText;
 
     public void NextLevel()
     {
+        if(tutorial)
+            SceneManager.LoadScene("Level1");
+
         if (mapTemplate == null || currentMap == null)
             return;
 
         // 1. Instantiate new map at (10,0,-10) from current map
-        Vector3 newMapPos = currentMap.transform.position + new Vector3(10, 0, -10);
+        Vector3 newMapPos = currentMap.transform.position + new Vector3(20, 0, -20);
         GameObject newMap = Instantiate(mapTemplate, newMapPos, Quaternion.identity);
 
         // 2. Randomly switch some of the children's transforms in the new map and update their building lists
@@ -27,7 +36,6 @@ public class LevelHandler : MonoBehaviour
         {
             Vector3 camStart = mainCam.transform.position;
             Vector3 camMoveBy = newMapPos - currentMap.transform.position;
-            Debug.Log("move cam");
             camController.SmoothMoveCamera(camStart, camMoveBy, camController.moveDuration, () => {
                 // 4. Once camera stops, move player to new map's topBuilding
                 if (player != null)
@@ -50,6 +58,10 @@ public class LevelHandler : MonoBehaviour
                 currentMap.GetComponent<MapFeel>().player = player;
                 GetComponent<EnemyManager>().map = currentMap;
                 GetComponent<DeathManager>().map = currentMap;
+
+                stage += 1;
+                stageText.text = stage.ToString(); 
+                GetComponent<EnemyManager>().UpdateRainclouds(stage);
             });
         }
         else
@@ -176,7 +188,8 @@ public class LevelHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(nextLevelDelay/2);
         currentMap.GetComponent<MapFeel>().MapCompleted();
-        GetComponent<EnemyManager>().ResetEnemies();
+        if(!tutorial)
+            GetComponent<EnemyManager>().ResetEnemies();
         yield return new WaitForSeconds(nextLevelDelay/2);
         NextLevel();
     }

@@ -11,9 +11,13 @@ public class EnemyManager : MonoBehaviour
     public GameObject[] furniturePrefabs;
     public float policemanSpawnPeriod = 5f;
     public float furnitureSpawnPeriod = 3f;
-    public float raincloudSpawnPeriod = 3f;
     public float windSpawnPeriod = 3f;
     public GameObject map;
+
+    public float raincloudSpawnPeriod = 8f;
+    public float raincloudSpawnPeriodDecreaseStep = 1f;
+    public float policemanSpawnPeriodDecreaseStep = 1f;
+    public bool raincloudsEnabled;
 
     private float spawnTimer = 0f;
     private float furnitureTimer = 0f;
@@ -56,11 +60,14 @@ public class EnemyManager : MonoBehaviour
             SpawnFurniture();
         }
 
-        raincloudTimer += Time.deltaTime;
-        if (raincloudTimer >= raincloudSpawnPeriod)
+        if(raincloudsEnabled)
         {
-            raincloudTimer = 0f;
-            SpawnRaincloud();
+            raincloudTimer += Time.deltaTime;
+            if (raincloudTimer >= raincloudSpawnPeriod)
+            {
+                raincloudTimer = 0f;
+                SpawnRaincloud();
+            }
         }
     }
 
@@ -154,7 +161,6 @@ public class EnemyManager : MonoBehaviour
         {
             if (enemy != null)
             {
-                Debug.Log(enemy.name);
                 if (enemy.GetComponent<EnemyController>())
                     enemy.GetComponent<EnemyController>().PlayDestroyAnim();
                 else 
@@ -163,5 +169,25 @@ public class EnemyManager : MonoBehaviour
         }
         enemies.Clear();
         currentPoliceman = null;
+    }
+
+    public void UpdateRainclouds(int stage)
+    {
+        Debug.Log("ASdasd");
+        if(stage <= 1)
+        {
+            raincloudsEnabled = true;
+        }
+        else
+        {
+            if(raincloudSpawnPeriod > 1)
+            {
+                raincloudSpawnPeriod -= raincloudSpawnPeriodDecreaseStep;
+            }
+            if(policemanSpawnPeriod > 1)
+            {
+                policemanSpawnPeriod -= policemanSpawnPeriodDecreaseStep;
+            }
+        }
     }
 }

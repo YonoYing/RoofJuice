@@ -40,6 +40,9 @@ public class PolicemanController : EnemyController
     protected override void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.name == "Player")
+        {
             GameObject.Find("GameManager").GetComponent<DeathManager>().OnPlayerDeath();
+            GetComponent<Animator>().SetTrigger("Destroy");
+        }
     }
 }

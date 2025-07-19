@@ -121,7 +121,6 @@ public class EnemyController : MonoBehaviour
 
     public void PlayDestroyAnim()
     {
-        Debug.Log("Booooby");
         GetComponent<Animator>().SetBool("Destroy", true);
     }
 

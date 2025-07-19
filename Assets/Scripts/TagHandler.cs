@@ -1,17 +1,26 @@
 using UnityEngine;
 using System.Linq;
+using System.Collections;
 
 public class TagHandler : MonoBehaviour
 {
     public Material[] tags;
     public Material emptyTag;
-    public bool tagged;
+    public Material puddleTag;
+    public bool tagged, puddled;
     public GameObject smokePrefab;
+    public float puddleClearDelay;
 
     void OnTriggerEnter(Collider other)
     {
+        if(puddled)
+        {
+            GameObject.Find("GameManager").GetComponent<DeathManager>().OnPlayerDeath();
+            return;
+        }
         if(!tagged)
         {
+
             BuildingHandler buildingHandler = GetComponent<BuildingHandler>();
             var usedMaterials = buildingHandler.buildings
                 .Select(b => b != null ? b.transform.Find("Tag") : null)
@@ -38,14 +47,23 @@ public class TagHandler : MonoBehaviour
         }
     }
 
-    public void ClearTag()
+    public void PuddleTag()
     {
-        if(tagged)
-        {
-            Transform tagChildTransform = transform.Find("Tag");
-            Renderer tagRenderer = tagChildTransform.GetComponent<Renderer>();
-            tagRenderer.material = emptyTag;
-            tagged = false;
-        }
+        Transform tagChildTransform = transform.Find("Tag");
+        Renderer tagRenderer = tagChildTransform.GetComponent<Renderer>();
+        tagRenderer.material = puddleTag;
+        puddled = true;
+        tagged = false;
+        StartCoroutine(ClearTag());
+    }
+
+    public IEnumerator ClearTag()
+    {
+        yield return new WaitForSeconds(puddleClearDelay);
+        Transform tagChildTransform = transform.Find("Tag");
+        Renderer tagRenderer = tagChildTransform.GetComponent<Renderer>();
+        tagRenderer.material = emptyTag;
+        puddled = false;
+        tagged = false;
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class DeathManager : MonoBehaviour
 {
@@ -9,13 +10,14 @@ public class DeathManager : MonoBehaviour
     public GameObject map;
     public float deathTimer = 2f;
     public int lives;
-    public Image[] lifeSprites;
+    public TMP_Text lifeText;
     public GameObject gameOverUI;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.Find("Player");
+        lifeText.text = lives.ToString();
     }
 
     // Update is called once per frame
@@ -26,12 +28,10 @@ public class DeathManager : MonoBehaviour
 
     public void OnPlayerDeath()
     {
-        Debug.Log(lives);
         lives -= 1;
-        lifeSprites[lives].enabled = false;
+        lifeText.text = lives.ToString();
         if(lives > 0)
         {
-            StartCoroutine(PlayerDeathCoroutine());
             player.GetComponent<PlayerController>().OnDeath();
         }
         else 
@@ -40,8 +40,13 @@ public class DeathManager : MonoBehaviour
             Time.timeScale = 0;
         }
     }
+    
+    public void StartPlayerDeathCoroutine()
+    {
+        StartCoroutine(PlayerDeathCoroutine());
+    }
 
-    private IEnumerator PlayerDeathCoroutine()
+    public IEnumerator PlayerDeathCoroutine()
     {
         if (player != null)
         {

@@ -63,13 +63,14 @@ public class Raincloud : MonoBehaviour
         if (player != null && player.currentBuilding == targetBuilding && player.umbrellaOpen)
         {
             // Player is safe, do nothing
+            rainParticleSystem.Stop();
         }
         else
         {
             // Player not safe, clear tag
             TagHandler tagHandler = targetBuilding.GetComponent<TagHandler>();
             if (tagHandler != null)
-                tagHandler.ClearTag();
+                tagHandler.PuddleTag();
         }
     }
 }
