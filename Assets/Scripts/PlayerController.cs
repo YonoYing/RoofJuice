@@ -122,12 +122,16 @@ public class PlayerController : JumpController
             executingWind = true;
             GameObject neighbor = currentBuilding.GetComponent<BuildingHandler>().buildings[0];
             targetBuilding = neighbor;
+            GetComponent<CapsuleCollider>().enabled = false;
+            jumpSpeed = 2*jumpSpeed;
             Jump(neighbor.transform.position);
             gm.GetComponent<EnemyManager>().ResetEnemies();
         } 
         else if (executingWind)
         {
             executingWind = false;
+            jumpSpeed = jumpSpeed/2;
+            GetComponent<CapsuleCollider>().enabled = true;
             CloseUmbrella();
         }
     }

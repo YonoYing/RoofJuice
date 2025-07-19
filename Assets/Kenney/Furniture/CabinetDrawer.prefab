@@ -73,7 +73,7 @@ MonoBehaviour:
   map: {fileID: 0}
   currentBuilding: {fileID: 0}
   targetBuilding: {fileID: 0}
-  jumpSpeed: 2
+  jumpSpeed: 1.905
   jumpHeight: 0.7
   isJumping: 0
   bounce: 0

@@ -118,4 +118,15 @@ public class EnemyController : MonoBehaviour
         if(other.gameObject.name == "Player")
             GameObject.Find("GameManager").GetComponent<DeathManager>().OnPlayerDeath();
     }
+
+    public void PlayDestroyAnim()
+    {
+        Debug.Log("Booooby");
+        GetComponent<Animator>().SetBool("Destroy", true);
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
 }

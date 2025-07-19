@@ -2,6 +2,7 @@
  Kenney
  https://nyknck.itch.io/wind
  https://cults3d.com/en/3d-model/various/low-poly-cloud
+ https://app.soundstripe.com/artists/716?sort=approved_at
 
  plan: 
  1. design map (done) 
@@ -30,10 +31,30 @@
    - rainCoroutine should trigger coroutine for checking for umbrella, if fails then untag square
    - rain Coroutine also re-triggers posiiton coroutine to move offscreen in same direction, then delete (flag) 
  10. enemy bouncing 
- 11. sounds & music 
- 12. start screen 
+ 11. sounds & music
+   - music 
+   - player jump (landing)
+   - player death 
+   - wind activation 
+   - cloud rain 
+   - level success 
+   - life-lightning  
+   - game over?
+ 12. start screen & ui
+   - mute button 
+   - better lives system (Icon x number)
+   - start menu = start button, credits button (list with hyperlinks)
  13. game feel 
  14. achievements 
+
+ Fixes: 
+ death/wind should reset spawn timers 
+
+ Features:
+ Blocking clouds should have game feel 
+ Some mechanical upside/downside to blocking clouds 
+   - Downside = apply "puddle" tag, make tile a death square (play enemy slip animation), remove after x seconds
+   - Upside = Block X clouds for a bonus life, X doubles each life (lightning to grant life)
 
  -1 -4 
  -3 -2

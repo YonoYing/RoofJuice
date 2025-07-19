@@ -6,6 +6,7 @@ public class TagHandler : MonoBehaviour
     public Material[] tags;
     public Material emptyTag;
     public bool tagged;
+    public GameObject smokePrefab;
 
     void OnTriggerEnter(Collider other)
     {
@@ -28,8 +29,10 @@ public class TagHandler : MonoBehaviour
 
             Transform tagChildTransform = transform.Find("Tag");
             Renderer tagRenderer = tagChildTransform.GetComponent<Renderer>();
-
             tagRenderer.material = chosenTag;
+
+            Instantiate(smokePrefab, transform.position, Quaternion.Euler(0,90,-90));
+            
             tagged = true;
             GameObject.Find("GameManager").GetComponent<LevelHandler>().CheckLevel();
         }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class DeathManager : MonoBehaviour
 {
@@ -15,7 +16,6 @@ public class DeathManager : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        lives = 3;
     }
 
     // Update is called once per frame
@@ -32,7 +32,6 @@ public class DeathManager : MonoBehaviour
         if(lives > 0)
         {
             StartCoroutine(PlayerDeathCoroutine());
-            GetComponent<EnemyManager>().ResetEnemies();
             player.GetComponent<PlayerController>().OnDeath();
         }
         else 
@@ -66,5 +65,11 @@ public class DeathManager : MonoBehaviour
             player.SetActive(true);
             player.GetComponent<JumpController>().isJumping = false;
         }
+    }
+
+    public void Restart() 
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

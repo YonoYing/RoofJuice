@@ -153,7 +153,13 @@ public class EnemyManager : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             if (enemy != null)
-                Destroy(enemy);
+            {
+                Debug.Log(enemy.name);
+                if (enemy.GetComponent<EnemyController>())
+                    enemy.GetComponent<EnemyController>().PlayDestroyAnim();
+                else 
+                    Destroy(enemy);
+            }
         }
         enemies.Clear();
         currentPoliceman = null;
