@@ -50,12 +50,12 @@
 
  Fixes: 
  death/wind should reset spawn timers 
+ fix map bounce 
 
  Features:
- Blocking clouds should have game feel 
- Some mechanical upside/downside to blocking clouds 
-   - Downside = apply "puddle" tag, make tile a death square (play enemy slip animation), remove after x seconds
-   - Upside = Block X clouds for a bonus life, X doubles each life (lightning to grant life)
+ hop sound, rain sound, wind sound, game over/next level sounds
+ Play with timers to make game feel good
+ Use wind to transition from tutorial to 1st level
 
  -1 -4 
  -3 -2

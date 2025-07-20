@@ -62,8 +62,12 @@ public class Raincloud : MonoBehaviour
         PlayerController player = FindObjectOfType<PlayerController>();
         if (player != null && player.currentBuilding == targetBuilding && player.umbrellaOpen)
         {
-            // Player is safe, do nothing
+            // Player is safe, stop particles
             rainParticleSystem.Stop();
+            rainParticleSystem.Clear();
+
+            player.GetComponent<PlayerController>().umbrella.GetComponent<Animator>().SetTrigger("Block");
+            GameObject.Find("GameManager").GetComponent<LevelHandler>().AddCloud();
         }
         else
         {

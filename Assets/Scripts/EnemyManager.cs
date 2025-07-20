@@ -20,7 +20,7 @@ public class EnemyManager : MonoBehaviour
     public bool raincloudsEnabled;
 
     private float spawnTimer = 0f;
-    private float furnitureTimer = 0f;
+    public float furnitureTimer = 0f;
     private float windTimer = 0f;
     public float raincloudTimer = 0f;
     private GameObject currentPoliceman = null;

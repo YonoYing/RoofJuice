@@ -13,6 +13,10 @@ public class LevelHandler : MonoBehaviour
     public bool tutorial;
     public int stage = 0;
     public TMP_Text stageText;
+    public int clouds = 0;
+    public int cloudMax = 5;
+    public int cloudMaxIncrement = 5;
+    public TMP_Text cloudText;
 
     public void NextLevel()
     {
@@ -192,5 +196,17 @@ public class LevelHandler : MonoBehaviour
             GetComponent<EnemyManager>().ResetEnemies();
         yield return new WaitForSeconds(nextLevelDelay/2);
         NextLevel();
+    }
+
+    public void AddCloud() 
+    {
+        clouds += 1;
+        if(clouds == cloudMax)
+        {
+            clouds = 0;
+            cloudMax += cloudMaxIncrement;
+            GetComponent<DeathManager>().AddLife();
+        }
+        cloudText.text =  $"{clouds.ToString()}/{cloudMax.ToString()}";
     }
 }

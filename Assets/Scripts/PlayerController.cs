@@ -10,7 +10,7 @@ public class PlayerController : JumpController
     private Vector3 offMapJumpTarget;
     public bool edgeBlocking;
     
-    public GameObject umbrella;
+    public GameObject umbrella, umbrellaSplash;
     public bool umbrellaOpen, pendingWind, executingWind;
     public float umbrellaAutoCloseTime = 1f; 
     public float deathTimer = 2f;
@@ -142,6 +142,10 @@ public class PlayerController : JumpController
             jumpSpeed = jumpSpeed/2;
             GetComponent<CapsuleCollider>().enabled = true;
             CloseUmbrella();
+        }
+        else 
+        {
+            map.GetComponent<MapFeel>().PlayerLanding();
         }
     }
 

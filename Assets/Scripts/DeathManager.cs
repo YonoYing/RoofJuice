@@ -26,6 +26,12 @@ public class DeathManager : MonoBehaviour
         
     }
 
+    public void AddLife()
+    {
+        lives += 1;
+        lifeText.text = lives.ToString();
+    }
+
     public void OnPlayerDeath()
     {
         lives -= 1;
@@ -39,6 +45,7 @@ public class DeathManager : MonoBehaviour
             gameOverUI.SetActive(true);
             Time.timeScale = 0;
         }
+        GetComponent<EnemyManager>().furnitureTimer = 0;
     }
     
     public void StartPlayerDeathCoroutine()
