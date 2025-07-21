@@ -75,6 +75,7 @@ public class DeathManager : MonoBehaviour
                 }
             }
             player.SetActive(true);
+            player.GetComponent<PlayerController>().umbrellaCooldown = false;
             player.GetComponent<JumpController>().isJumping = false;
         }
     }

@@ -23,7 +23,10 @@ public class EnemyManager : MonoBehaviour
     public float furnitureTimer = 0f;
     private float windTimer = 0f;
     public float raincloudTimer = 0f;
+    public float policeFastSpeed = 4f;
     private GameObject currentPoliceman = null;
+    private GameObject secondPoliceman = null;
+    private GameObject currentRaincloud = null;
     private GameObject currentWind = null;
 
     void Start()
@@ -33,7 +36,8 @@ public class EnemyManager : MonoBehaviour
 
     void Update()
     {
-        if (currentPoliceman == null)
+        int stage = GetComponent<LevelHandler>().stage;
+        if ((currentPoliceman == null) || (stage >= 6 && secondPoliceman == null))
         {
             spawnTimer += Time.deltaTime;
             if (spawnTimer >= policemanSpawnPeriod)
@@ -60,7 +64,7 @@ public class EnemyManager : MonoBehaviour
             SpawnFurniture();
         }
 
-        if(raincloudsEnabled)
+        if(raincloudsEnabled && currentRaincloud==null)
         {
             raincloudTimer += Time.deltaTime;
             if (raincloudTimer >= raincloudSpawnPeriod)
@@ -75,7 +79,18 @@ public class EnemyManager : MonoBehaviour
     {
         var mapHandler = map.GetComponent<MapHandler>();
         GameObject spawnBuilding = Random.value < 0.5f ? mapHandler.bottomLeft : mapHandler.bottomRight;
-        currentPoliceman = SpawnEnemy(policemanPrefab, spawnBuilding);
+        if(!currentPoliceman)
+            currentPoliceman = SpawnEnemy(policemanPrefab, spawnBuilding);
+        else if(!secondPoliceman)
+            secondPoliceman = SpawnEnemy(policemanPrefab, spawnBuilding);
+
+        if(GetComponent<LevelHandler>().stage > 4)
+        {
+            if(currentPoliceman)
+                currentPoliceman.GetComponent<PolicemanController>().movementPeriod = policeFastSpeed;
+            if(secondPoliceman)
+                secondPoliceman.GetComponent<PolicemanController>().movementPeriod = policeFastSpeed;
+        }
     }
 
     public void SpawnFurniture()
@@ -128,6 +143,7 @@ public class EnemyManager : MonoBehaviour
         else 
             targetBuilding.GetComponent<BuildingHandler>().buildings[2] = newWind;
         newWind.GetComponent<BuildingHandler>().buildings[0] = map.GetComponent<MapHandler>().topBuilding;
+        // currentWind = newWind;
     }
 
     public void SpawnRaincloud()
@@ -150,6 +166,7 @@ public class EnemyManager : MonoBehaviour
         Vector3 moveOffset = offsets[1 - offsetIndex];
         Vector3 spawnPosition = targetBuilding.transform.position + spawnOffset;
         GameObject raincloud = Instantiate(raincloudPrefab, spawnPosition, Quaternion.identity);
+        currentRaincloud = raincloud; 
         Raincloud rc = raincloud.GetComponent<Raincloud>();
         rc.targetBuilding = targetBuilding;
         StartCoroutine(rc.MoveCloud(moveOffset));
@@ -179,13 +196,15 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
-            if(raincloudSpawnPeriod > 1)
+            raincloudSpawnPeriod -= raincloudSpawnPeriodDecreaseStep;
+            policemanSpawnPeriod -= policemanSpawnPeriodDecreaseStep;
+            if(raincloudSpawnPeriod <= 1)
             {
-                raincloudSpawnPeriod -= raincloudSpawnPeriodDecreaseStep;
+                raincloudSpawnPeriod = 1;
             }
-            if(policemanSpawnPeriod > 1)
+            if(policemanSpawnPeriod <= 1)
             {
-                policemanSpawnPeriod -= policemanSpawnPeriodDecreaseStep;
+                policemanSpawnPeriod = 1;
             }
         }
     }

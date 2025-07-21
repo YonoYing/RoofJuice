@@ -14,9 +14,10 @@ public class LevelHandler : MonoBehaviour
     public int stage = 0;
     public TMP_Text stageText;
     public int clouds = 0;
-    public int cloudMax = 5;
-    public int cloudMaxIncrement = 5;
+    public int cloudMax = 3;
+    public int cloudMaxIncrement = 3;
     public TMP_Text cloudText;
+    public Color[] levelColors;
 
     public void NextLevel()
     {
@@ -64,6 +65,7 @@ public class LevelHandler : MonoBehaviour
                 GetComponent<DeathManager>().map = currentMap;
 
                 stage += 1;
+                mainCam.backgroundColor = levelColors[stage];
                 stageText.text = stage.ToString(); 
                 GetComponent<EnemyManager>().UpdateRainclouds(stage);
             });
@@ -105,8 +107,6 @@ public class LevelHandler : MonoBehaviour
                 // Swap positions in the array
                 buildingObjs[i] = buildingB;
                 buildingObjs[j] = buildingA;
-                Debug.Log(buildingA);
-                Debug.Log(buildingB);
                 // Swap their transforms in the hierarchy
                 Vector3 tempPos = buildingA.transform.position;
                 buildingA.transform.position = buildingB.transform.position;

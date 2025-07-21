@@ -49,11 +49,13 @@
  14. achievements 
 
  Fixes: 
- death/wind should reset spawn timers 
- fix map bounce 
 
  Features:
- hop sound, rain sound, wind sound, game over/next level sounds
+ hop sound, https://opengameart.org/content/jump-landing-sound
+ rain sound, https://opengameart.org/content/thunder-rain-and-wind
+ wind sound, https://opengameart.org/content/short-wind-sound
+ game over/next level sounds 
+
  Play with timers to make game feel good
  Use wind to transition from tutorial to 1st level
 

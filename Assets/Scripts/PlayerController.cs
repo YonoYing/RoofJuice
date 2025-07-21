@@ -11,8 +11,9 @@ public class PlayerController : JumpController
     public bool edgeBlocking;
     
     public GameObject umbrella, umbrellaSplash;
-    public bool umbrellaOpen, pendingWind, executingWind;
+    public bool umbrellaOpen, pendingWind, executingWind, umbrellaCooldown;
     public float umbrellaAutoCloseTime = 1f; 
+    public float umbrellaCooldownTime = 1f; 
     public float deathTimer = 2f;
     GameObject gm;
 
@@ -29,7 +30,7 @@ public class PlayerController : JumpController
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(!umbrellaOpen)
+        if(!umbrellaOpen && !umbrellaCooldown)
         {
             umbrellaOpen = true;
             umbrella.GetComponent<Animator>().SetBool("Open", true);
@@ -46,7 +47,9 @@ public class PlayerController : JumpController
         if (!pendingWind)
         {
             umbrellaOpen = false;
+            umbrellaCooldown = true;
             umbrella.GetComponent<Animator>().SetBool("Open", false);
+            StartCoroutine(UmbrellaCooldownCoroutine());
         }
     }
 
@@ -56,37 +59,66 @@ public class PlayerController : JumpController
         CloseUmbrella();
     }
 
+    private IEnumerator UmbrellaCooldownCoroutine()
+    {
+        yield return new WaitForSeconds(umbrellaCooldownTime);
+        umbrellaCooldown = false;
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         if (!context.performed || isJumping) return;
         Vector2 moveInput = context.ReadValue<Vector2>();
         int dir = -1;
-        if (moveInput.x > 0.5f) dir = 0; // right
-        else if (moveInput.x < -0.5f) dir = 3; // left
-        else if (moveInput.y > 0.5f) dir = 2; // up
-        else if (moveInput.y < -0.5f) dir = 1; // down
+        
+        // Use the largest axis for cardinal directions, but allow diagonals for touch
+        float absX = Mathf.Abs(moveInput.x);
+        float absY = Mathf.Abs(moveInput.y);
 
-        if (dir == -1) return;
-        var bh = currentBuilding.GetComponent<BuildingHandler>();
-        if (bh != null && bh.buildings != null && dir < bh.buildings.Length)
+        // Cardinal directions (keyboard/gamepad or strong swipe)
+        if (absX > absY)
         {
-            GameObject neighbor = bh.buildings[dir];
-            if (neighbor != null)
-            {
-                if(neighbor.CompareTag("Wind"))
-                {
-                    if(umbrellaOpen)
-                        pendingWind = true;
-                    else 
-                        DeathJump(dir);
-                }
-                targetBuilding = neighbor;
-                Jump(neighbor.transform.position);
-                return;
-            }
+            if (moveInput.x > 0.5f) dir = 0; // right
+            else if (moveInput.x < -0.5f) dir = 3; // left
         }
-        // No neighbor in that direction, jump off the map
-        DeathJump(dir);
+        else if (absY > absX)
+        {
+            if (moveInput.y > 0.5f) dir = 2; // up
+            else if (moveInput.y < -0.5f) dir = 1; // down
+        }
+
+        // For touchscreen, allow diagonals to override
+        if (Input.touchSupported && Input.touchCount > 0)
+        {
+            if (moveInput.x > 0 && moveInput.y > 0) dir = 2; // up-right
+            else if (moveInput.x < 0 && moveInput.y > 0) dir = 3; // up-left
+            else if (moveInput.x > 0 && moveInput.y < 0) dir = 0; // down-right
+            else if (moveInput.x < 0 && moveInput.y < 0) dir = 1; // down-left
+        }
+
+        if(!pendingDeath)
+        {
+            var bh = currentBuilding.GetComponent<BuildingHandler>();
+            if (bh != null && bh.buildings != null && dir < bh.buildings.Length)
+            {
+                GameObject neighbor = bh.buildings[dir];
+                if (neighbor != null)
+                {
+                    if(neighbor.CompareTag("Wind"))
+                    {
+                        if(umbrellaOpen)
+                            pendingWind = true;
+                        else 
+                            DeathJump(dir);
+                    }
+                    targetBuilding = neighbor;
+                    Jump(neighbor.transform.position);
+                    return;
+                }
+            }
+            // No neighbor in that direction, jump off the map
+            DeathJump(dir);
+        }
     }
 
     void DeathJump(int dir) 
